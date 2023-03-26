@@ -1,0 +1,15 @@
+var startOffset = #startOffset#;
+var offset = startOffset;
+var res = [];
+
+while (offset < startOffset + 20000) {
+    var members = API.groups.getMembers({'group_id':'#group_id#', 'offset': offset, 'fields': "bdate, country, city"});
+    res.push(members.items);
+    offset = offset + members.items.length;
+
+    if (members.items.length == 0) {
+        return res;
+    }
+}
+
+return res;
